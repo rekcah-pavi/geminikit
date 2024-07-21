@@ -23,6 +23,30 @@ jobs:
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
 
+    - name: Increment version
+      run: |
+        # Extract the current version from setup.py
+        current_version=$(python setup.py --version)
+        
+        # Split version into components
+        IFS='.' read -r -a version_parts <<< "$current_version"
+        
+        # Increment the patch version
+        version_parts[2]=$((version_parts[2] + 1))
+        
+        # Construct the new version
+        new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+        
+        # Update the setup.py with the new version
+        sed -i "s/version='$current_version'/version='$new_version'/" setup.py
+        
+        # Commit the version bump
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add setup.py
+        git commit -m "Bump version to $new_version"
+        git push origin main
+
     - name: Build package
       run: |
         python setup.py sdist bdist_wheel
