@@ -15,6 +15,7 @@ or
 pip install git+https://github.com/rekcah-pavi/geminikit
 ```
 
-
-
 ***
+
+## Getcookies
+![](./assets/2024-07-21_19.19.15.mp4)
