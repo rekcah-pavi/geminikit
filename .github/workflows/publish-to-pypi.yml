@@ -13,25 +13,33 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Check if setup.py is modified
+      id: check_setup
+      run: |
+        if git diff --name-only HEAD^ HEAD | grep -q "setup.py"; then
+          echo "setup.py changed"
+          echo "::set-output name=changed::true"
+        else
+          echo "setup.py not changed"
+          echo "::set-output name=changed::false"
+        fi
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.11' 
+        python-version: '3.11'
+      if: steps.check_setup.outputs.changed == 'true'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel twine bump2version
-
-    - name: Increment version
-      run: |
-        git config --global user.email "rkpavi06@gmail.com"  
-        git config --global user.name "pavi" 
-        bump2version patch  # Change 'patch' to 'minor' or 'major' as needed
+        pip install setuptools wheel twine
+      if: steps.check_setup.outputs.changed == 'true'
 
     - name: Build package
       run: |
         python setup.py sdist bdist_wheel
+      if: steps.check_setup.outputs.changed == 'true'
 
     - name: Publish package
       env:
@@ -39,12 +47,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.token }}
       run: |
         twine upload dist/*
-
-    - name: Push changes
-      run: |
-        git config --global user.email "rkpavi06@gmail.com"  
-        git config --global user.name "pavi"
-        git remote set-url origin https://x-access-token:${{ secrets.git_token }}@github.com/rekcah-pavi/geminikit.git
-        git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.git_token }}
+      if: steps.check_setup.outputs.changed == 'true'
