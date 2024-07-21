@@ -2,7 +2,7 @@
 
 An unofficial Python wrapper, geminikit, has been developed through reverse-engineering. This tool utilizes cookie values to interact with Google Gemini for testing purposes.
 
-<br><br>
+<br>
 
 
 ## Installation
