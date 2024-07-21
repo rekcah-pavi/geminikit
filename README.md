@@ -18,7 +18,9 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 ***
 
 ## Getcookies
-<video width="600" controls>
-  <source src="assets/2024-07-21_19.19.15.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<h6>video guide</h6>
+<a href="https://youtu.be/IUCJg2KWcJs">
+  <img src="https://img.youtube.com/vi/IUCJg2KWcJs/maxresdefault.jpg" alt="Watch the video" width="40%" height="250" />
+</a>
+<br>
+
