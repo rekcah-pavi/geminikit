@@ -56,6 +56,29 @@ with open("chrome-net-export-log.json",'r') as f:
 
 print(cookies)
 ```
+***
+
+## Usage
+## Setup gemini
+```python
+from geminikit import Gemini
+gemini = Gemini(cookies)
+
+```
+
+### Ask a message
+```python
+res = gemini.ask("hello")
+print(res['text'])
+```
+
+
+### Text to Voice
+```python
+res = gemini.speech("hello")
+with open("a.wav","wb") as f:
+	f.write(res)
+```
 
 
 
