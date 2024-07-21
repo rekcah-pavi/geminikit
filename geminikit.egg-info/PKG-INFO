@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: geminikit
+Version: 1.0.0
+Summary: The python package that returns Response of Google Gemini through Cookies.
+Home-page: https://github.com/rekcah-pavi/geminikit
+Author: paviththanan
+Author-email: rkpavi06@gmail.com
+Keywords: Python,API,Gemini,Google Gemini,Large Language Model,Chatbot API,Google API,Chatbot
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+hiii
