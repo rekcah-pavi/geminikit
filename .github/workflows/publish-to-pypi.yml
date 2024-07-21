@@ -25,6 +25,8 @@ jobs:
 
     - name: Increment version
       run: |
+        git config --global user.email "rkpavi06@gmail.com"  
+        git config --global user.name "pavi" 
         bump2version patch  # Change 'patch' to 'minor' or 'major' as needed
 
     - name: Build package
