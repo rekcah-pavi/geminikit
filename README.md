@@ -47,5 +47,15 @@ Ensure all tabs are closed in Google Chrome.
 ### 6. Retrieve Cookies
 - The cookies will be saved in a JSON file.
 
+### 7. Get cookies from your saved file
+```python
+from geminikit import get_cookies_from_file
+
+with open("chrome-net-export-log.json",'r') as f:
+	cookies = get_cookies_from_file(f.read())
+
+print(cookies)
+```
+
 
 
