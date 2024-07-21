@@ -34,7 +34,7 @@ base_cookies = {
 }
 
 
-def get_cookies(text):
+def get_cookies_from_file(text):
     cookies = {}
     for cookie_name in base_cookies:
       pattern = rf' {cookie_name}=([^\s;]+)'
