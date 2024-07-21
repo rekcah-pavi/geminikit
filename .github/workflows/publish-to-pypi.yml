@@ -43,7 +43,8 @@ jobs:
     - name: Push changes
       run: |
         git config --global user.email "rkpavi06@gmail.com"  
-        git config --global user.name "pavi" 
-        git push
+        git config --global user.name "pavi"
+        git remote set-url origin https://x-access-token:${{ secrets.git_token }}@github.com/rekcah-pavi/geminikit.git
+        git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.git_token }}
