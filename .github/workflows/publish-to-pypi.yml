@@ -18,28 +18,28 @@ jobs:
       run: |
         if git diff --name-only HEAD^ HEAD | grep -q "setup.py"; then
           echo "setup.py changed"
-          echo "::set-output name=changed::true"
+          echo "changed=true" >> $GITHUB_ENV
         else
           echo "setup.py not changed"
-          echo "::set-output name=changed::false"
+          echo "changed=false" >> $GITHUB_ENV
         fi
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.11'
-      if: steps.check_setup.outputs.changed == 'true'
+      if: env.changed == 'true'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
-      if: steps.check_setup.outputs.changed == 'true'
+      if: env.changed == 'true'
 
     - name: Build package
       run: |
         python setup.py sdist bdist_wheel
-      if: steps.check_setup.outputs.changed == 'true'
+      if: env.changed == 'true'
 
     - name: Publish package
       env:
@@ -47,4 +47,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.token }}
       run: |
         twine upload dist/*
-      if: steps.check_setup.outputs.changed == 'true'
+      if: env.changed == 'true'
