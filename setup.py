@@ -1,50 +1,36 @@
-name: Publish Python Package
+from setuptools import find_packages
+from setuptools import setup
 
-on:
-  push:
-    branches:
-      - main  
+def get_long_description():
+    with open("README.md", "r", encoding="utf-8") as f:
+        return f.read()
 
-jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Check if setup.py is modified
-      id: check_setup
-      run: |
-        if git diff --name-only HEAD^ HEAD | grep -q "setup.py"; then
-          echo "setup.py changed"
-          echo "changed=true" >> $GITHUB_ENV
-        else
-          echo "setup.py not changed"
-          echo "changed=false" >> $GITHUB_ENV
-        fi
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11'
-      if: env.changed == 'true'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-      if: env.changed == 'true'
-
-    - name: Build package
-      run: |
-        python setup.py sdist bdist_wheel
-      if: env.changed == 'true'
-
-    - name: Publish package
-      env:
-        TWINE_USERNAME: _token_
-        TWINE_PASSWORD: ${{ secrets.token }}
-      run: |
-        twine upload dist/*
-      if: env.changed == 'true'
+setup(
+    name="geminikit",
+    version="1.0.3",
+    author="paviththanan",
+    author_email="rkpavi06@gmail.com",
+    description="The python package that returns Response of Google Gemini through Cookies.",
+    long_description=get_long_description(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/rekcah-pavi/geminikit",
+    packages=find_packages(exclude=[]),
+    python_requires=">=3.6",
+    install_requires=[
+        "httpx",
+    ],
+    keywords="Python, API, Gemini, Google Gemini, Large Language Model, Chatbot API, Google API, Chatbot",
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Science/Research",
+        "Natural Language :: English",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "License :: OSI Approved :: MIT License",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    ],
+)
