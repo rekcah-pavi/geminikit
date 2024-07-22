@@ -17,7 +17,7 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 
 ***
 
-## Log Cookies 
+## Get Cookie File
 <a href="https://youtu.be/IUCJg2KWcJs" target="_blank">
   Click here for Video guide
 </a>
