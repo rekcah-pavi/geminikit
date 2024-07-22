@@ -7,7 +7,7 @@ def get_long_description():
 #
 setup(
     name="geminikit",
-    version="1.1.1",
+    version="1.1.2",
     author="paviththanan",
     author_email="rkpavi06@gmail.com",
     description="The python package that returns Response of Google Gemini through Cookies.",

@@ -185,6 +185,8 @@ class Gemini:
             raise Exception(f"Failed to get image bytes from URL. Error: {str(e)}")
 
     def share(self, conversation_id, response_id, choice_id, req_id, fsid):
+        title = args.get('title') or "geminikit"
+        title = urllib.parse.quote(title)
         bott = self.bott
         SNlM0e = self.SNlM0e
         ccid = conversation_id.replace("c_", "")
@@ -201,6 +203,7 @@ class Gemini:
         data = data.replace("edit_rid", response_id)
         data = data.replace("edit_rc", choice_id)
         data = data.replace("edit_sni", SNlM0e)
+        data = data.replace("bard_kpbot", title)
 
         try:
             response = self.client.post('https://gemini.google.com/_/BardChatUi/data/batchexecute', params=params, headers=header_gen, data=data)
