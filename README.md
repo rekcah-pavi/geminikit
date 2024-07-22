@@ -18,7 +18,7 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 ```
 
 ***
- ## Get Cookie File
+ ## Get Cookie File (chrome-net-export-log)
 <details>
  
 
