@@ -184,7 +184,8 @@ class Gemini:
 
         return nurl
 
-    async def share(self, response_id, conversation_id, choice_id):
+    async def share(self, response_id, conversation_id, choice_id,**args):
+        title = args.get('title') or "geminikit"
         bott = self.bott
         fsid = '-' + str(random.randint(10**(19-1), 10**19 - 1))
         req_id = self._reqid + 100000
@@ -203,6 +204,7 @@ class Gemini:
         data = data.replace("edit_rid", response_id)
         data = data.replace("edit_rc", choice_id)
         data = data.replace("edit_sni", SNlM0e)
+        data = data.replace("bard_kpbot", title)
 
         try:
             response = await self.client.post('https://gemini.google.com/_/BardChatUi/data/batchexecute', params=params, headers=header_gen, data=data)
