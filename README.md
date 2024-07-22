@@ -99,6 +99,7 @@ res = gemini.ask("send me some wallpapers")
 
 print(res['text'])
 
+#Also, you can access URLs directly.
 for url in res['image_urls']:
 	img_name  = url.split("/")[-1]
 	img_bytes = gemini.get_img_bytes(url)
