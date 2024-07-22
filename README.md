@@ -88,6 +88,16 @@ res = gemini.ask("hello")
 print(res['text'])
 ```
 
+### Ask continuous message
+```python
+user = None
+while True:
+	text = input("Ask: ")
+	res = gemini.ask(text,user=user)
+	user = res
+	print(res['text'])
+```
+
 ### Text to Voice
 
 ```python
