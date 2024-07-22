@@ -92,3 +92,19 @@ res = gemini.ask("What is in this photo?",photo=photo)
 print(print(res['text'])
 
 ```
+
+### Save responce images
+```python
+res = gemini.ask("send me some wallpapers")
+
+print(res['text'])
+
+for url in res['image_urls']:
+	img_name  = url.split("/")[-1]
+	img_bytes = gemini.get_img_bytes(url)
+	with open(img_name,'wb') as f:
+		f.write(img_bytes)
+
+
+```
+
