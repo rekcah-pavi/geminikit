@@ -94,9 +94,10 @@ from geminikit import get_cookies_from_file
 from geminikit import Asynic_Gemini as Gemini
 
 import asyncio
+import aiofiles #pip install aiofiles
 
 async def main():
-    with open("chrome-net-export-log.json", 'r') as f:
+    async with aiofiles.open("chrome-net-export-log.json", mode='r') as f:
         cookies = get_cookies_from_file(f.read())
 
     gemini = await Gemini.create(cookies)
