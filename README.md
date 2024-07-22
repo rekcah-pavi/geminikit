@@ -23,7 +23,6 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 
 For a detailed video guide, [click here](https://youtu.be/IUCJg2KWcJs).
 
-<br>
 
 ### 1. Close All Tabs
 
