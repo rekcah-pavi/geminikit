@@ -15,7 +15,7 @@ class Gemini:
         self.conversation_id = ""
         self.response_id = ""
         self.choice_id = ""
-        self.client = httpx.AsyncClient(headers=header_main, follow_redirects=True)
+        self.client = httpx.AsyncClient(headers=header_main, follow_redirects=True,timeout=30.0)
         cookies = {key: str(value) for key, value in cookies.items()}
         self.client.cookies.update(cookies)
         self.SNlM0e = SNlM0e
