@@ -184,7 +184,7 @@ class Gemini:
         except httpx.RequestError as e:
             raise Exception(f"Failed to get image bytes from URL. Error: {str(e)}")
 
-    def share(self, conversation_id, response_id, choice_id, req_id, fsid):
+    def share(self, conversation_id, response_id, choice_id, req_id, fsid,**args):
         title = args.get('title') or "geminikit"
         title = urllib.parse.quote(title)
         bott = self.bott
@@ -214,7 +214,7 @@ class Gemini:
         text = str(response.content)
         try:
             a = (re.findall(r'null,(.*?)"]",', text)[0]).split('"')[-1].replace("\\", "")
-            return f"https://g.co/bard/share/{a}"
+            return f"https://gemini.google.com/share/{a}"
         except IndexError:
             raise Exception(f"Failed to extract share URL from response: {text}")
 
