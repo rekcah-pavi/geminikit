@@ -74,14 +74,14 @@ class Gemini:
             if not isinstance(photo, list) or not len(photo) == 2:
                 raise Exception("Photo format invalid. Expected a list of 2 elements (name, url).")
             
-            data = 'f.req=%5Bnull%2C%22%5B%5Bedit_text%2C0%2Cnull%2C%5B%5D%2Cnull%2Cnull%2C0%5D%2C%5B%5C%22en%5C%22%5D%2C%5B%5C%22edit_cid%5C%22%2C%5C%22edit_rid%5C%22%2C%5C%22edit_rc%5C%22%2Cnull%2Cnull%2C%5B%5D%5D%2C%5C%22edit_uid%5C%22%2C%5C%22edit_hex%5C%22%2Cnull%2C%5B1%5D%2C0%2C%5B%5D%2C%5B%5D%2C1%2C0%5D%22%5D&at=edit_sni&'
+            data = 'f.req=%5Bnull%2C%22%5B%5Bedit_text%2C0%2Cnull%2C%5B%5B%5B%5C%22edit_url%5C%22%2C1%5D%2C%5C%22edit_name%5C%22%5D%5D%2Cnull%2Cnull%2C0%5D%2C%5B%5C%22en%5C%22%5D%2C%5B%5C%22edit_cid%5C%22%2C%5C%22edit_rid%5C%22%2C%5C%22edit_rc%5C%22%2Cnull%2Cnull%2C%5B%5D%5D%2C%5C%22edit_uid%5C%22%2C%5C%22edit_hex%5C%22%2Cnull%2C%5B1%5D%2C0%2C%5B%5D%2C%5B%5D%2C1%2C0%5D%22%5D&at=edit_sni&'
             pname = urllib.parse.quote(photo[0])
             purl = urllib.parse.quote(photo[1])
             data = data.replace("edit_name", pname)
             data = data.replace("edit_url", purl)
         else:    
             data = 'f.req=%5Bnull%2C%22%5B%5Bedit_text%2C0%2Cnull%2C%5B%5D%2Cnull%2Cnull%2C0%5D%2C%5B%5C%22en%5C%22%5D%2C%5B%5C%22edit_cid%5C%22%2C%5C%22edit_rid%5C%22%2C%5C%22edit_rc%5C%22%2Cnull%2Cnull%2C%5B%5D%5D%2C%5C%22edit_uid%5C%22%2C%5C%22edit_hex%5C%22%2Cnull%2C%5B1%5D%2C0%2C%5B%5D%2C%5B%5D%2C1%2C0%5D%22%5D&at=edit_sni&'
-
+    
         otext = text
         text = json.dumps(text)
         text = json.dumps(text)[1:-1]
