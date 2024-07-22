@@ -92,10 +92,10 @@ print(res['text'])
 ```python
 user = None
 while True:
-	text = input("Ask: ")
-	res = gemini.ask(text,user=user)
-	user = res
-	print(res['text'])
+ text = input("Ask: ")
+ res = gemini.ask(text,user=user)
+ user = res
+ print(res['text'])
 ```
 
 ### Text to Voice
