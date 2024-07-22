@@ -91,7 +91,7 @@ print(cookies)
  
 ```python
 from geminikit import get_cookies_from_file
-from geminikit import Gemini
+from geminikit import Asynic_Gemini as Gemini
 
 import asyncio
 
@@ -109,13 +109,33 @@ asyncio.run(main())
 
 ### Ask a Message
 
-```python
+
+<details>
+  <summary>Sync</summary>
+
+  ```python
 res = gemini.ask("hello")
 print(res['text'])
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+res = await gemini.ask("hello")
+print(res['text'])
+```
+</details>
+
+
 
 ### Ask continuous message
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 user = None
 while True:
  text = input("Ask: ")
@@ -123,18 +143,60 @@ while True:
  user = res
  print(res['text'])
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+import asyncio
+
+user = None
+while True:
+ await asyncio.sleep(0)
+ text = input("Ask: ")
+ res = await gemini.ask(text,user=user)
+ user = res
+ print(res['text'])
+ ```
+</details>
+
+
+
 
 ### Text to Voice
 
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 res = gemini.speech("hello")
 with open("a.wav", "wb") as f:
     f.write(res)
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+import aiofiles #pip install aiofiles
+res = await gemini.speech("hello")
+async with aiofiles.open("a.wav", mode='wb') as f:
+        await f.write(res)
+```
+</details>
+
+
 
 ### Ask with Photo
 
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 with open("cat.jpg", "rb") as f:
     img_link = gemini.upload_image(f.read())
 
@@ -143,10 +205,38 @@ photo = ['cat.jpg', img_link]  # photo name (if not available, use 'none.jpg'), 
 res = gemini.ask("What is in this photo?", photo=photo)
 print(res['text'])
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+import aiofiles #pip install aiofiles
+
+async with aiofiles.open("cat.jpg", mode='rb') as f:
+        img_data = await f.read()
+        img_link = await gemini.upload_image(img_data)
+
+photo = ['cat.jpg', img_link]  # photo name (if not available, use 'none.jpg'), link
+
+res = await gemini.ask("What is in this photo?", photo=photo)
+print(res['text'])
+
+
+```
+</details>
+
+
+
+
 
 ### Save Response Images
 
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 res = gemini.ask("send me some wallpapers")
 
 print(res['text'])
@@ -158,10 +248,41 @@ for url in res['image_urls']:
     with open(img_name, 'wb') as f:
         f.write(img_bytes)
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+import aiofiles #pip install aiofiles
+
+
+res = await gemini.ask("send me some wallpapers")
+
+print(res['text'])
+
+#Or You can access URLs directly
+for url in res['image_urls']:
+    img_name  = url.split("/")[-1]
+    img_bytes = await gemini.get_img_bytes(url)
+    async with aiofiles.open(img_name, mode='wb') as f:
+        await f.write(img_bytes)
+
+```
+</details>
+
+
+
+
+
 
 ### Save Generated Images
 
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 res = gemini.ask("Generate an image of a cat holding a rose.")
 
 print(res['text'])
@@ -172,11 +293,55 @@ for url in res['generated_image_urls']:
     with open(img_name, 'wb') as f:
         f.write(img_bytes)
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+import aiofiles #pip install aiofiles
+
+res = await gemini.ask("Generate an image of a cat holding a rose.")
+
+print(res['text'])
+
+for url in res['generated_image_urls']:
+    img_name  = url.split("/")[-1][:10] + ".png"
+    img_bytes = await gemini.get_img_bytes(url)
+
+    async with aiofiles.open(img_name, mode='wb') as f:
+        await f.write(img_bytes)
+
+```
+</details>
+
+
+
 
 ### Get Sharable URL
 
-```python
+<details>
+  <summary>Sync</summary>
+
+  ```python
 res = gemini.ask("Hi")
 url = gemini.share(res['conversation_id'], res['response_id'], res['choice_id'], res['req_id'], res['fsid'], title="test by me")
 print(url)
 ```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
+```python
+res = await gemini.ask("Hi")
+url = await gemini.share(res['conversation_id'], res['response_id'], res['choice_id'], res['req_id'], res['fsid'], title="test by me")
+print(url)
+```
+</details>
+
+
+
+
