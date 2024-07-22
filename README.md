@@ -81,4 +81,14 @@ with open("a.wav","wb") as f:
 ```
 
 
+### Ask with photo
+```python
+with open("cat.jpg","rb") as f:
+	img_link = gemini.upload_image(f.read())
 
+photo = ['cat.jpg', img_link] # photo name (if not available, use 'none.jpg'), link
+
+res = gemini.ask("What is in this photo?",photo=photo)
+print(print(res['text'])
+
+```
