@@ -18,9 +18,8 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 ***
 
 ## Log Cookies 
-<h6>video guide</h6>
-<a href="https://youtu.be/IUCJg2KWcJs">
-  <img src="https://img.youtube.com/vi/IUCJg2KWcJs/maxresdefault.jpg" alt="Watch the video" width="40%" height="250" />
+<a href="https://youtu.be/IUCJg2KWcJs" target="_blank">
+  Click here for Video guide
 </a>
 <br>
 
