@@ -123,3 +123,10 @@ for url in res['generated_image_urls']:
 
 ```
 
+### Get sharable URL
+```python
+res = gemini.ask("Hi")
+url = gemini.share(res['conversation_id'],res['response_id'],res['choice_id'],res['req_id'],res['fsid'],title="test by me")
+print(url)
+
+```
