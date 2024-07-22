@@ -106,6 +106,20 @@ for url in res['image_urls']:
 	with open(img_name,'wb') as f:
 		f.write(img_bytes)
 
+```
+
+### Save generated images
+```python
+res = gemini.ask("Generate an image of a cat holding a rose.")
+
+print(res['text'])
+
+#You can't access URLs directly.
+for url in res['generated_image_urls']:
+	img_name  = url.split("/")[-1][:10]+".png"
+	img_bytes = gemini.get_img_bytes(url)
+	with open(img_name,'wb') as f:
+		f.write(img_bytes)
 
 ```
 
