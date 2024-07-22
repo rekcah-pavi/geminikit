@@ -18,11 +18,13 @@ pip install git+https://github.com/rekcah-pavi/geminikit
 ```
 
 ***
-
-## Get Cookie File
+ ## Get Cookie File
+<details>
+ 
 
 For a detailed video guide, [click here](https://youtu.be/IUCJg2KWcJs).
 
+<br>
 
 ### 1. Close All Tabs
 
@@ -63,6 +65,8 @@ with open("chrome-net-export-log.json", 'r') as f:
 print(cookies)
 ```
 
+</details>
+
 ***
 
 ## Usage
@@ -70,7 +74,11 @@ print(cookies)
 ### Setup Gemini
 
 ```python
+from geminikit import get_cookies_from_file
 from geminikit import Gemini
+
+with open("chrome-net-export-log.json", 'r') as f:
+    cookies = get_cookies_from_file(f.read())
 
 gemini = Gemini(cookies)
 ```
