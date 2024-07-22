@@ -71,15 +71,41 @@ print(cookies)
 
 ### Setup Gemini
 
+<details>
+  <summary>Sync</summary>
+
+  ```python
+  from geminikit import get_cookies_from_file
+  from geminikit import Gemini
+
+  with open("chrome-net-export-log.json", 'r') as f:
+      cookies = get_cookies_from_file(f.read())
+
+  gemini = Gemini(cookies)
+```
+</details>
+
+
+<details>
+  <summary>Async</summary>
+ 
 ```python
 from geminikit import get_cookies_from_file
 from geminikit import Gemini
 
-with open("chrome-net-export-log.json", 'r') as f:
-    cookies = get_cookies_from_file(f.read())
+import asyncio
 
-gemini = Gemini(cookies)
+async def main():
+    with open("chrome-net-export-log.json", 'r') as f:
+        cookies = get_cookies_from_file(f.read())
+
+    gemini = await Gemini.create(cookies)
+
+asyncio.run(main())
 ```
+</details>
+
+
 
 ### Ask a Message
 
