@@ -222,7 +222,8 @@ class Gemini:
     async def cookies(self):
         return self.client.cookies.jar
 
-    async def speech(self, text):
+    async def speech(self, text,**args):
+        lang_code = args.get("lang_code") or "en-GB"
         bott = self.bott
         SNlM0e = self.SNlM0e
         uid = int("1" + str(random.randint(0, 999999)).zfill(6))
@@ -233,7 +234,7 @@ class Gemini:
             "rt": "c",
         }
 
-        input_text_struct = [[["XqA3Ic", json.dumps([None, text, 'en-GB', None, 2])]], ["generic"]]
+        input_text_struct = [[["XqA3Ic", json.dumps([None, text, lang_code, None, 2])]], ["generic"]]
 
         data = {
             "f.req": json.dumps(input_text_struct),
