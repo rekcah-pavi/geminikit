@@ -71,7 +71,7 @@ print(cookies)
 
 ### Setup Gemini
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -111,7 +111,7 @@ asyncio.run(main())
 ### Ask a Message
 
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -133,7 +133,7 @@ print(res['text'])
 
 
 ### Ask continuous message
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -168,11 +168,12 @@ while True:
 
 ### Text to Voice
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
 res = gemini.speech("hello")
+#res = gemini.speech("hello", lang_code="en")
 with open("a.wav", "wb") as f:
     f.write(res)
 ```
@@ -185,6 +186,7 @@ with open("a.wav", "wb") as f:
 ```python
 import aiofiles #pip install aiofiles
 res = await gemini.speech("hello")
+#res = gemini.speech("hello", lang_code="en")
 async with aiofiles.open("a.wav", mode='wb') as f:
         await f.write(res)
 ```
@@ -194,7 +196,7 @@ async with aiofiles.open("a.wav", mode='wb') as f:
 
 ### Ask with Photo
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -234,7 +236,7 @@ print(res['text'])
 
 ### Save Response Images
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -280,7 +282,7 @@ for url in res['image_urls']:
 
 ### Save Generated Images
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
@@ -322,7 +324,7 @@ for url in res['generated_image_urls']:
 
 ### Get Sharable URL
 
-<details>
+<details open>
   <summary>Sync</summary>
 
   ```python
