@@ -98,7 +98,7 @@ import aiofiles #pip install aiofiles
 
 async def main():
     async with aiofiles.open("chrome-net-export-log.json", mode='r') as f:
-        cookies = get_cookies_from_file(f.read())
+        cookies = get_cookies_from_file(await f.read())
 
     gemini = await Gemini.create(cookies)
 
