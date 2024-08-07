@@ -8,6 +8,8 @@ import base64
 import urllib.parse
 import uuid
 
+import asyncio
+
 from geminikit.headers import *
 from geminikit.helpers import *
 
