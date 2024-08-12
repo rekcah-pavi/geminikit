@@ -137,11 +137,11 @@ print(res['text'])
   <summary>Sync</summary>
 
   ```python
-user = None
-while True:
- text = input("Ask: ")
- res = gemini.ask(text,user=user)
- user = res
+
+ response = gemini.ask("tell me a joke")
+ print(res['text'])
+ #user value must be a dictionary containing SNlM0e, conversation_id, response_id, choice_id (available inside the response dictionary)
+ res = gemini.ask("another one",user=response)
  print(res['text'])
 ```
 </details>
@@ -151,14 +151,10 @@ while True:
   <summary>Async</summary>
  
 ```python
-import asyncio
-
-user = None
-while True:
- await asyncio.sleep(0)
- text = input("Ask: ")
- res = await gemini.ask(text,user=user)
- user = res
+ response = await gemini.ask("tell me a joke")
+ print(res['text'])
+ #user value must be a dictionary containing SNlM0e, conversation_id, response_id, choice_id (available inside the response dictionary)
+ res = await gemini.ask("another one",user=response)
  print(res['text'])
  ```
 </details>
