@@ -10,6 +10,8 @@ import uuid
 
 from geminikit.headers import *
 from geminikit.helpers import *
+import fake_useragent
+
 
 class Gemini:
     def __init__(self, cookies):
@@ -27,7 +29,8 @@ class Gemini:
 
     def refresh_cookies(self):
         try:
-            resp = self.client.get(url="https://gemini.google.com", timeout=50)
+            header_user_agent={'User-Agent': fake_useragent.UserAgent().random}
+            resp = self.client.get(url="https://gemini.google.com/app", timeout=50, cookies=self.client.cookies.jar, headers=header_user_agent)
             resp.raise_for_status()  # Raises an HTTPStatusError if the status is not 200
         except httpx.RequestError as e:
             raise Exception(f"Could not get Gemini cookies. Error: {str(e)}")
